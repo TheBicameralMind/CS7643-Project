@@ -17,14 +17,14 @@ labeler = DeterministicLabeler()
 
 preprocessing = keras.Sequential([
     Rescaling(scale=1./255),
-    RandomFlip('horizontal'),
+    # RandomFlip('horizontal'),
     RandomRotation(0.2),
     RandomTranslation(0.15, 0.15),
-    # RandomZoom(0.1)
+    RandomZoom(0.1)
 ])
 
 model = keras.Sequential([
-    # preprocessing,
+    preprocessing,
 
     Conv2D(64, (5, 5), activation='relu', padding='same'),
     Conv2D(128, (4, 4), activation='relu', padding='same'),
@@ -47,7 +47,7 @@ shutil.rmtree(f'checkpoints/{model.name}', ignore_errors=True)
 
 callbacks = [
     TensorBoard(log_dir=f'tensorboard/{model.name}'),
-    ModelCheckpoint(filepath=f'checkpoints/{model.name}')
+    # ModelCheckpoint(filepath=f'checkpoints/{model.name}')
 ]
 
 metric = [metrics.Accuracy(), metrics.Precision(), metrics.Recall()]
@@ -57,10 +57,12 @@ model.compile(
     loss='categorical_crossentropy',
     metrics=metric
 )
+
 model.fit(
     dataset.train(128),
     batch_size=128,
     epochs=50,
     validation_data=dataset.val(128),
-    callbacks=callbacks
+    callbacks=callbacks,
+    class_weight=dataset.get_class_weights(),
 )
