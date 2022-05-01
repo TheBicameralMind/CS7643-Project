@@ -1,0 +1,44 @@
+Model: "tsatlee-poinder"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ conv2d_6 (Conv2D)           (None, 32, 32, 16)        1216      
+                                                                 
+ conv2d_7 (Conv2D)           (None, 32, 32, 32)        8224      
+                                                                 
+ max_pooling2d_3 (MaxPooling  (None, 16, 16, 32)       0         
+ 2D)                                                             
+                                                                 
+ dropout_4 (Dropout)         (None, 16, 16, 32)        0         
+                                                                 
+ conv2d_8 (Conv2D)           (None, 16, 16, 32)        9248      
+                                                                 
+ conv2d_9 (Conv2D)           (None, 16, 16, 64)        18496     
+                                                                 
+ max_pooling2d_4 (MaxPooling  (None, 8, 8, 64)         0         
+ 2D)                                                             
+                                                                 
+ dropout_5 (Dropout)         (None, 8, 8, 64)          0         
+                                                                 
+ conv2d_10 (Conv2D)          (None, 6, 6, 64)          36928     
+                                                                 
+ conv2d_11 (Conv2D)          (None, 4, 4, 32)          18464     
+                                                                 
+ max_pooling2d_5 (MaxPooling  (None, 2, 2, 32)         0         
+ 2D)                                                             
+                                                                 
+ dropout_6 (Dropout)         (None, 2, 2, 32)          0         
+                                                                 
+ flatten_1 (Flatten)         (None, 128)               0         
+                                                                 
+ dense_1 (Dense)             (None, 64)                8256      
+                                                                 
+ dropout_7 (Dropout)         (None, 64)                0         
+                                                                 
+ dense_2 (Dense)             (None, 43)                2795      
+                                                                 
+=================================================================
+Total params: 103,627
+Trainable params: 103,627
+Non-trainable params: 0
+_________________________________________________________________
